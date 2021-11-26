@@ -19,12 +19,19 @@ public class UserController {
     //create a new user
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
     public UserModel createUser(@RequestBody UserModel user) {
+        if (user == null) {
+            throw new NoSuchElementException();
+        }
         return userService.createUser(user);
     }
 
     //edit user details (except id) of an existing user
     @RequestMapping(value = "/editUserDetails/{id}", method = RequestMethod.PUT)
     public UserModel editUser(@PathVariable("id") Integer id, @RequestBody UserModel user) {
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+
         UserModel existingUser = userService.findById(id);
 
         if (existingUser == null) {
@@ -39,12 +46,20 @@ public class UserController {
     //delete an existing user based on the given user id
     @RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.DELETE)
     public UserModel deleteUser(@PathVariable("id") Integer id) {
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+
         return userService.deleteUser(id);
     }
 
     //find an existing user based on the given user id
     @RequestMapping(value = "/findById/{id}", method = RequestMethod.GET)
     public UserModel findById(@PathVariable("id") Integer id) {
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+
         return userService.findById(id);
     }
 
@@ -53,6 +68,5 @@ public class UserController {
     public List<UserModel> fetchAllUsers() {
         return userService.fetchAllUsers();
     }
-
-
+    
 }
