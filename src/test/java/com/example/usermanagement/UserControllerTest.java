@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
@@ -117,17 +118,17 @@ public class UserControllerTest {
         Assertions.assertTrue(returnedUser.getEmail().equals(userModel.getEmail()));
     }
 
-    //    @Test
-//    public void deleteApplication() throws Exception {
-//        UserModel userModel  = new UserModel();
-//        userModel.setUserId(1);
-//        userModel.setUsername("abc");
-//        userModel.setEmail("abc@gmail.com");
-//        userModel.setAddress("10, abc road");
-//
-//        Mockito.when(userService.deleteUser(1)).thenReturn(userModel);
-//        verify(userRepository).findById(1);
-//    }
+    @Test
+    public void deleteApplication() throws Exception {
+        UserModel userModel  = new UserModel();
+        userModel.setUserId(1);
+        userModel.setUsername("abc");
+        userModel.setEmail("abc@gmail.com");
+        userModel.setAddress("10, abc road");
+
+        Mockito.when(userService.deleteUser(1)).thenReturn(userModel);
+        //verify(userRepository).findById(1);
+    }
 
 
 }

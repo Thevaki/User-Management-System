@@ -68,5 +68,5 @@ public class UserController {
     public List<UserModel> fetchAllUsers() {
         return userService.fetchAllUsers();
     }
-    
+
 }
